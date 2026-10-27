@@ -19,7 +19,7 @@ public class PayRoll {
             System.out.print("Whats the name of the file you want to read: ");
             String txtinput = scanner.nextLine();
 
-            System.out.print("What's the name of pay-roll file you want to create:");
+            System.out.print("What's the name of pay-roll file you want to create: ");
             String txtoutput = scanner.nextLine();
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(txtoutput));
@@ -43,7 +43,7 @@ public class PayRoll {
 
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
 
-                text = String.format("Id: %d, name: %s, grossPay: %.2f,\n",
+                text = String.format("%d|name|%s|%.2f,\n",
                            employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
                     bufferedWriter.write(text);
 
