@@ -16,10 +16,10 @@ public class PayRoll {
 
 
             // FileReader opens the file; BufferedReader wraps it so we can read whole lines
-            System.out.println("Whats the name of the file you want to read: ");
+            System.out.print("Whats the name of the file you want to read: ");
             String txtinput = scanner.nextLine();
 
-            System.out.println("What's the name of pay-roll file you want to create:");
+            System.out.print("What's the name of pay-roll file you want to create:");
             String txtoutput = scanner.nextLine();
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(txtoutput));
@@ -33,7 +33,6 @@ public class PayRoll {
             // readLine() returns null at the end of the file, which ends the loop
             while ((line = reader.readLine()) != null) {
 
-
                     ///has a special meaning in split (it takes a pattern),so it is escaped as \\|
                 String[] tokens = line.split("\\|");
                 // Everything read from a file is text: convert each value to its real type
@@ -43,23 +42,22 @@ public class PayRoll {
                 double payRate = Double.parseDouble(tokens[3]);
 
                 Employee employee = new Employee(id, name, hoursWorked, payRate);
-                for (int i = 1; i < tokens.length; i++) {
-                    text = String.format("Id: %d, name: %s, grossPay: %.2f,\n",
-                            employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
+
+                text = String.format("Id: %d, name: %s, grossPay: %.2f,\n",
+                           employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
                     bufferedWriter.write(text);
 
-
-                    System.out.printf("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
+                   /* System.out.printf("Employee ID: %d, Name: %s, Gross Pay: $%.2f%n",
                             employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
-                }
+*/
             }
 
-
             reader.close();
+            bufferedWriter.close();
         } catch (Exception e) {
             // Most likely cause: employees.csv is not in the project folder
             System.err.println("Error reading file: " + fileName);
-            e.getCause();
+            e.getStackTrace();
         }
     }
 
